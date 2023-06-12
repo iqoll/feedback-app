@@ -21,11 +21,15 @@ function FeedbackForm() {
     }
   }, [feedbackEdit]);
 
-  const handleTextChange = (e) => {
-    if (text === '') {
+  // NOTE: This should be checking input value not state as state won't be the updated value until the next render of the component
+
+  const handleTextChange = ({ target: { value } }) => {
+    // 👈  get the value
+    if (value === '') {
       setBtnDisabled(true);
       setMessage(null);
-    } else if (text !== '' && text.trim().length <= 10) {
+    } else if (value !== '' && value.trim().length <= 10) {
+      // 👈 check for less than 10
       setMessage('Text must be at least 10 characters');
       setBtnDisabled(true);
     } else {
@@ -33,7 +37,7 @@ function FeedbackForm() {
       setBtnDisabled(false);
     }
 
-    setText(e.target.value);
+    setText(value);
   };
 
   const handleSubmit = (e) => {
