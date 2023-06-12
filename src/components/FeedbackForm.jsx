@@ -54,6 +54,9 @@ function FeedbackForm() {
         addFeedback(newFeedback);
       }
 
+      // NOTE: reset to default state after submission
+      setBtnDisabled(true);
+      setRating(10);
       setText('');
     }
   };
